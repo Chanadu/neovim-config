@@ -17,6 +17,7 @@ return {
 			{ "<leader>r", group = "[R]estart or [R]ename" },
 			{ "<leader>c", group = "[C]ode Actions (-> a)" },
 			{ "<leader>x", group = "Trouble Window" },
+			{ "<leader>x", group = "Trouble Window" },
 		})
 	end,
 	opts = {},

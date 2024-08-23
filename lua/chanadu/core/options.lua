@@ -10,14 +10,14 @@ opt.showmode = true
 opt.number = true
 opt.relativenumber = true
 
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"
 
 opt.breakindent = true
 
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.signcolumn = 'yes' 
+opt.signcolumn = "yes"
 
 opt.updatetime = 250
 opt.timeoutlen = 1000
@@ -26,10 +26,10 @@ opt.splitright = true
 opt.splitbelow = true
 
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- vim.opt.listchars = { trail = '·', nbsp = '␣' }
 
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 vim.opt.cursorline = true
 
