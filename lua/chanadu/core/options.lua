@@ -1,9 +1,8 @@
-vim.cmd("let g:netrw_liststyle = 3")
-
 local opt = vim.opt
 local g = vim.g
 
 g.have_nerd_font = true
+g.netrw_liststyle = 3
 
 opt.showmode = true
 
