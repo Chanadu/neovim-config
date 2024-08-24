@@ -43,3 +43,5 @@ opt.autoindent = true
 opt.wrap = false
 
 opt.background = "dark"
+
+opt.pumheight = 10

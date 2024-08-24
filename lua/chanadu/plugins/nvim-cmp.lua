@@ -13,6 +13,7 @@ return {
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
 	},
+
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
@@ -22,12 +23,12 @@ return {
 
 		cmp.setup({
 			completion = {
-				compelteopt = "menu,menuone,preview,noselect"
+				compelteopt = "menu,menuone,preview,noselect",
 			},
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
-				end
+				end,
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -38,7 +39,8 @@ return {
 				["<C-e>"] = cmp.mapping.abort(),
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 			}),
-			sources  = cmp.config.sources({
+			sources = cmp.config.sources({
+				{ name = "copilot" },
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "buffer" },
@@ -50,7 +52,9 @@ return {
 					ellipsis_char = "...",
 				}),
 			},
+			experimental = {
+				ghost_text = true,
+			},
 		})
 	end,
-
 }
