@@ -49,22 +49,10 @@ if not vim.filetype then
 	return
 end
 
-vim.filetype.add({
-	extension = {
-		lock = "yaml",
-		gotmpl = "gotmpl",
-	},
-	filename = {
-		[".gitignore"] = "conf",
-		[".eslintrc"] = "jsonc",
-		[".prettierrc"] = "jsonc",
-		[".babelrc"] = "jsonc",
-		[".flake8"] = "dosini",
-		["*sway*"] = "swayconfig",
-	},
-	pattern = {
-		[".env.*"] = "sh",
-		["*.Dockerfile.*"] = "dockerfile",
-		["*sway*"] = "swayconfig",
-	},
+-- au BufNewFile,BufRead,BufReadPost *.twig set syntax=HTML
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufReadPost" }, {
+	pattern = { "*sway*" },
+	callback = function()
+		vim.bo.filetype = "swayconfig"
+	end,
 })
