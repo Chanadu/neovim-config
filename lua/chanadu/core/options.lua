@@ -60,6 +60,7 @@ vim.filetype.add({
 		[".prettierrc"] = "jsonc",
 		[".babelrc"] = "jsonc",
 		[".flake8"] = "dosini",
+		["*sway*"] = "swayconfig",
 	},
 	pattern = {
 		[".env.*"] = "sh",
