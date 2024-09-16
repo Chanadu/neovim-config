@@ -8,11 +8,11 @@ return {
 	},
 	keys = {
 		{
-			"<leader>p",
+			"<leader>pl",
 			vim.schedule_wrap(function()
 				require("telescope").extensions.projects.projects({})
 			end),
-			desc = "Telescope Projects",
+			desc = "Telescope Projects List",
 		},
 	},
 	config = function()
