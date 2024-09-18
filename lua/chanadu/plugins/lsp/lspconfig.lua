@@ -47,12 +47,12 @@ return {
 
 				opts.desc = "Go to previous diagnostics"
 				keymap.set("n", "[d", function()
-					vim.diagnostic.jump({count = -1, float = true})
+					vim.diagnostic.jump({ count = -1, float = true })
 				end, opts)
 
 				opts.desc = "Go to next diagnostics"
 				keymap.set("n", "]d", function()
-					vim.diagnostic.jump({count = 1, float = true})
+					vim.diagnostic.jump({ count = 1, float = true })
 				end, opts)
 
 				opts.desc = "Show documentation for what is under cursor"
@@ -70,13 +70,5 @@ return {
 			local hl = "DiagnosticsSign" .. type
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
-
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-		})
-	end
+	end,
 }

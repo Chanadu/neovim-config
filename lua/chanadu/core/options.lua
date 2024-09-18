@@ -56,3 +56,9 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead", "BufReadPost" }, {
 		vim.bo.filetype = "swayconfig"
 	end,
 })
+
+vim.filetype.add({
+	extension = {
+		postcss = "css",
+	},
+})
