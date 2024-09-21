@@ -11,7 +11,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "chanadu.plugins" }, { import = "chanadu.plugins.lsp" } }, {
+require("lazy").setup({
+	{ import = "chanadu.plugins" },
+	{ import = "chanadu.plugins.decoration" },
+	{ import = "chanadu.plugins.programming-utils" },
+	{ import = "chanadu.plugins.ui-utils" },
+}, {
 	checker = {
 		enabled = true,
 		notify = false,
