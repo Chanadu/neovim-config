@@ -12,6 +12,7 @@ return {
 		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
+		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
 	},
 
 	config = function()

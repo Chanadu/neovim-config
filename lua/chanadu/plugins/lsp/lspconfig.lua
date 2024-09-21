@@ -6,6 +6,32 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
 	},
+	opts = {
+		servers = {
+			tailwindcss = {
+				classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+				includeLanguages = {
+					eelixir = "html-eex",
+					eruby = "erb",
+					htmlangular = "html",
+					templ = "html",
+					svelte = "html",
+				},
+				lint = {
+					cssConflict = "warning",
+					invalidApply = "error",
+					invalidConfigPath = "error",
+					invalidScreen = "error",
+					invalidTailwindDirective = "error",
+					invalidVariant = "error",
+					recommendedVariantOrder = "warning",
+				},
+				validate = true,
+			},
+			svelte = {},
+			pyright = {},
+		},
+	},
 	config = function()
 		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
