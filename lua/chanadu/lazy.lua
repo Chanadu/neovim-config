@@ -17,6 +17,6 @@ require("lazy").setup({ { import = "chanadu.plugins" }, { import = "chanadu.plug
 		notify = false,
 	},
 	change_detection = {
-		notify = false,
+		notify = true,
 	},
 })

@@ -1,0 +1,113 @@
+return {
+	"VonHeikemen/lsp-zero.nvim",
+	dependencies = {
+		{ "williamboman/mason.nvim" },
+		{ "williamboman/mason-lspconfig.nvim" },
+		{ "neovim/nvim-lspconfig" },
+		{ "onsails/lspkind.nvim" },
+		{ "L3MON4D3/LuaSnip" },
+		{ "hrsh7th/nvim-cmp" },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "hrsh7th/cmp-path" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{ "rafamadriz/friendly-snippets" },
+		{ "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+	},
+	config = function()
+		local lsp_zero = require("lsp-zero")
+
+		local lsp_attach = function(_, bufnr)
+			local opts = { buffer = bufnr }
+
+			local keymap = vim.keymap
+			keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+			keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+			keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
+			keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+			keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
+			keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+			keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+			keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
+			keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
+			keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+		end
+
+		lsp_zero.extend_lspconfig({
+			sign_text = true,
+			lsp_attach = lsp_attach,
+			float_border = "rounded",
+			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+		})
+
+		require("mason").setup({})
+		require("mason-lspconfig").setup({
+			handlers = {
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+			},
+		})
+
+		local cmp = require("cmp")
+		local cmp_action = lsp_zero.cmp_action()
+
+		-- this is the function that loads the extra snippets
+		-- from rafamadriz/friendly-snippets
+		require("luasnip.loaders.from_vscode").lazy_load()
+		local luasnip = require("luasnip")
+		local lspkind = require("lspkind")
+
+		cmp.setup({
+			sources = {
+				{ name = "copilot" },
+				{ name = "path" },
+				{ name = "nvim_lsp" },
+				{ name = "luasnip", keyword_length = 2 },
+				{ name = "buffer", keyword_length = 3 },
+			},
+			window = {
+				completion = cmp.config.window.bordered(),
+				documentation = cmp.config.window.bordered(),
+			},
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
+			mapping = cmp.mapping.preset.insert({
+				["<C-k>"] = cmp.mapping.select_prev_item(),
+				["<C-j>"] = cmp.mapping.select_next_item(),
+				["<C-b>"] = cmp.mapping.scroll_docs(-3),
+				["<C-f>"] = cmp.mapping.scroll_docs(3),
+				["<C-Space>"] = cmp.mapping.complete(),
+				["<C-e>"] = cmp.mapping.abort(),
+				["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+				-- navigate between snippet placeholders
+				["<C-n>"] = cmp_action.luasnip_jump_forward(),
+				["<C-m>"] = cmp_action.luasnip_jump_backward(),
+			}),
+			experimental = {
+				ghost_text = true,
+			},
+			formatting = {
+				format = lspkind.cmp_format({
+					maxwidth = 75,
+					ellipsis_char = "...",
+				}),
+			},
+		})
+
+		local lspconfig = require("lspconfig")
+		lspconfig.lua_ls.setup({
+			settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
+				},
+			},
+		})
+	end,
+}
