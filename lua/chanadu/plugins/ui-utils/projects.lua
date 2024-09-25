@@ -15,6 +15,9 @@ return {
 			desc = "Telescope Projects List",
 		},
 	},
+	opts = {
+		exclude_dirs = { "~/", "chanadu" },
+	},
 	config = function()
 		local projects = require("project_nvim")
 		projects.setup({})
