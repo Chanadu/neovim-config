@@ -40,7 +40,6 @@ return {
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			servers = {
 				tailwindcss = {},
-				clangd = {},
 			},
 		})
 
@@ -51,9 +50,7 @@ return {
 					require("lspconfig")[server_name].setup({})
 				end,
 			},
-			ensure_installed = {
-				"clangd",
-			},
+			ensure_installed = {},
 		})
 
 		local cmp = require("cmp")
@@ -147,6 +144,6 @@ return {
 				},
 			},
 		})
-		lspconfig.clangd.setup({})
+		lspconfig.ccls.setup({})
 	end,
 }

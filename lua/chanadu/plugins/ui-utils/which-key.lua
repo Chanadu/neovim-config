@@ -15,9 +15,13 @@ return {
 			{ "<leader>w", group = "[W]orkspace" },
 			{ "<leader>m", group = "Format (-> p)" },
 			{ "<leader>r", group = "[R]estart or [R]ename" },
+			{ "<leader>c", group = "[C]opilot Chat" },
 			{ "<leader>cc", group = "[C]opilot [C]hat" },
 			{ "<leader>p", group = "[P]rojects (-> l)" },
 			{ "<leader>x", group = "Trouble Window" },
+			{ "<leader>g", group = "Lazy [G]it" },
+			{ "<leader>h", group = "Git [H]unk Commands" },
+			{ "<leader>l", group = "[L]inter (-> l)" },
 		})
 	end,
 	opts = {},
