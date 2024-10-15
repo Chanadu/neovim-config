@@ -98,8 +98,8 @@ return {
 				git_status = {
 					symbols = {
 						-- Change type
-						added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+						added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+						modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
 						deleted = "✖", -- this can only be used in the git_status source
 						renamed = "󰁕", -- this can only be used in the git_status source
 						-- Status type
@@ -137,7 +137,7 @@ return {
 			commands = {},
 			window = {
 				position = "left",
-				width = 40,
+				width = 35,
 				mapping_options = {
 					noremap = true,
 					nowait = true,
@@ -147,6 +147,8 @@ return {
 						"toggle_node",
 						nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
 					},
+					["<C-k>"] = "noop",
+					["<C-j>"] = "noop",
 					["<2-LeftMouse>"] = "open",
 					["<cr>"] = "open",
 					["<esc>"] = "cancel", -- close preview or floating neo-tree window
@@ -199,10 +201,10 @@ return {
 			nesting_rules = {},
 			filesystem = {
 				filtered_items = {
-					visible = false, -- when true, they will just be displayed differently than normal items
-					hide_dotfiles = true,
-					hide_gitignored = true,
-					hide_hidden = true, -- only works on Windows for hidden files/directories
+					visible = true, -- when true, they will just be displayed differently than normal items
+					hide_dotfiles = false,
+					hide_gitignored = false,
+					hide_hidden = false, -- only works on Windows for hidden files/directories
 					hide_by_name = {
 						--"node_modules"
 					},
@@ -211,10 +213,10 @@ return {
 						--"*/src/*/tsconfig.json",
 					},
 					always_show = { -- remains visible even if other settings would normally hide it
-						--".gitignored",
+						".gitignored",
 					},
 					always_show_by_pattern = { -- uses glob style patterns
-						--".env*",
+						".env*",
 					},
 					never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
 						--".DS_Store",
@@ -225,9 +227,9 @@ return {
 					},
 				},
 				follow_current_file = {
-					enabled = false, -- This will find and focus the file in the active buffer every time
+					enabled = true, -- This will find and focus the file in the active buffer every time
 					--               -- the current file is changed while the tree is open.
-					leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+					leave_dirs_open = true, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
 				},
 				group_empty_dirs = false, -- when true, empty folders will be grouped together
 				hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -262,9 +264,9 @@ return {
 					},
 					fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 						["<down>"] = "move_cursor_down",
-						["<C-n>"] = "move_cursor_down",
+						["<C-j>"] = "move_cursor_down",
 						["<up>"] = "move_cursor_up",
-						["<C-p>"] = "move_cursor_up",
+						["<C-k>"] = "move_cursor_up",
 						-- ['<key>'] = function(state, scroll_padding) ... end,
 					},
 				},
@@ -316,7 +318,19 @@ return {
 				},
 			},
 		})
-
-		vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+		-- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
 	end,
+	keys = {
+		{ "<leader>er", "<cmd>Neotree filesystem reveal focus float<cr>", desc = "Open Neotree in a Floating Window" },
+		{
+			"<leader>ee",
+			"<cmd>Neotree filesystem left reveal toggle focus<cr>",
+			desc = "Open Neotree in a Window to the Left",
+		},
+		{
+			"<leader>ef",
+			"<cmd>Neotree filesystem reveal focus<cr>",
+			desc = "Focus Neotree",
+		},
+	},
 }
