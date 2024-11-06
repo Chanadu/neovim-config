@@ -8,6 +8,8 @@ return {
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 
+		-- local HEIGHT_RATIO = 0.8 -- You can change this
+		-- local WIDTH_RATIO = 0.5 -- You can change this too
 		nvimtree.setup({
 			sync_root_with_cwd = true,
 			respect_buf_cwd = true,
@@ -56,5 +58,12 @@ return {
 		)
 		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapseKeepBuffers<CR>", { desc = "Collapse file explorer" })
 		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })
+
+		-- local tree_api = require("nvim-tree")
+		-- local tree_view = require("nvim-tree.view")
+		local api = require("nvim-tree.api")
+		api.events.subscribe(api.events.Event.FileCreated, function(file)
+			vim.cmd("edit " .. file.fname)
+		end)
 	end,
 }

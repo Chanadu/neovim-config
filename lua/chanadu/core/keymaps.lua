@@ -6,9 +6,12 @@ local keymap = vim.keymap
 keymap.set("n", "<leader>nm", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- increment decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
-keymap.set("n", "<leader>=", "<C-a>", { desc = "Increment number" })
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+-- keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+-- keymap.set("n", "<leader>=", "<C-a>", { desc = "Increment number" })
+-- keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
+
+keymap.set("n", ",", "\"0p", { desc = "Paste previously copied content" })
+keymap.set("v", ",", "\"0p", { desc = "Paste previously copied content" })
 
 -- window management
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })

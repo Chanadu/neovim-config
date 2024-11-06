@@ -3,6 +3,7 @@ local g = vim.g
 
 g.have_nerd_font = true
 g.netrw_liststyle = 3
+g.editorconfig = false
 
 opt.showmode = true
 
