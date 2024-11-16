@@ -1,9 +1,11 @@
 return {
 	"NvChad/nvim-colorizer.lua",
 	opts = {
-		names = true,
 		user_default_options = {
-			tailwind = true,
+			tailwind = "both",
+			RRGGBBAA = true,
+			AARRGGBB = true,
+			rgb_fn = true,
 		},
 	},
 }
