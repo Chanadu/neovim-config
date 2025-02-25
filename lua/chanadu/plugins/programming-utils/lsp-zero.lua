@@ -85,9 +85,9 @@ return {
 
 		cmp.setup({
 			sources = {
+				{ name = "nvim_lsp" },
 				{ name = "copilot" },
 				{ name = "path" },
-				{ name = "nvim_lsp" },
 				{ name = "luasnip", keyword_length = 2 },
 				{ name = "buffer",  keyword_length = 3 },
 			},
@@ -107,7 +107,7 @@ return {
 				["<C-f>"] = cmp.mapping.scroll_docs(3),
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<Tab>"] = cmp.mapping.confirm({ select = true }),
 
 				-- navigate between snippet placeholders
 				["<C-n>"] = cmp_action.luasnip_jump_forward(),

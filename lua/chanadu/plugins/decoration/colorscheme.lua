@@ -4,7 +4,7 @@ return {
 	lazy = false,
 	config = function()
 		require("onedark").setup({
-			style = "dark",
+			style = "cool",
 		})
 		vim.cmd("colorscheme onedark")
 	end,
