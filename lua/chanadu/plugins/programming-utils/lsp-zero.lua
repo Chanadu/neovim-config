@@ -43,6 +43,9 @@ return {
 			servers = {
 				tailwindcss = {},
 			},
+			inlay_hints = {
+				enabled = true,
+			}
 		})
 
 		require("mason").setup({})

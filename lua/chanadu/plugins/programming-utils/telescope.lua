@@ -3,7 +3,7 @@ return {
 	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
 		{ "nvim-telescope/telescope-project.nvim" },
 		{ "nvim-telescope/telescope-file-browser.nvim" },
 		"nvim-tree/nvim-web-devicons",
@@ -15,7 +15,7 @@ return {
 
 		telescope.setup({
 			defaults = {
-				file_ignore_patterns = { ".git/", "node_modules/" },
+				file_ignore_patterns = { ".git/", "node_modules/", "build/" },
 				path_display = { "smart" },
 				mappings = {
 					i = {
@@ -32,7 +32,7 @@ return {
 			},
 			extensions = {
 				fzf = {
-					fuzzy = true, -- false will only do exact matching
+					fuzzy = true,     -- false will only do exact matching
 					override_generic_sorter = false, -- override the generic sorter
 					override_file_sorter = true, -- override the file sorter
 					case_mode = "smart_case", -- or "ignore_case" or "respect_case"
@@ -48,6 +48,7 @@ return {
 		keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 		keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 		keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+		-- keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Fuzzy find buffers" })
 		keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 
 		local builtin = require("telescope.builtin")
