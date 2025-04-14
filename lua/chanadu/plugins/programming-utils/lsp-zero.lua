@@ -41,11 +41,11 @@ return {
 			float_border = "rounded",
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			servers = {
-				tailwindcss = {},
+				-- tailwindcss = {},
 			},
 			inlay_hints = {
 				enabled = true,
-			}
+			},
 		})
 
 		require("mason").setup({})
@@ -71,11 +71,11 @@ return {
 		-- luasnip.add_snippets("svelte", {
 		luasnip.add_snippets("all", {
 			s("scc", {
-				t({ '<script lang=\"ts\">', '', '</script>', }),
-				t({ '', '<div>', '' }),
+				t({ '<script lang="ts">', "", "</script>" }),
+				t({ "", "<div>", "" }),
 				i(1),
-				t({ '</div>', '', '<style lang=\"postcss\">', '', '</style>' }),
-			})
+				t({ "</div>", "", '<style lang="postcss">', "", "</style>" }),
+			}),
 		})
 
 		local lspkind = require("lspkind")
@@ -92,7 +92,7 @@ return {
 				{ name = "copilot" },
 				{ name = "path" },
 				{ name = "luasnip", keyword_length = 2 },
-				{ name = "buffer",  keyword_length = 3 },
+				{ name = "buffer", keyword_length = 3 },
 			},
 			window = {
 				completion = cmp.config.window.bordered(),
@@ -122,15 +122,15 @@ return {
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = lspkind.cmp_format({
-					mode = 'symbol_text', -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
+					mode = "symbol_text", -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
 					maxwidth = 100, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-					menu = ({ -- showing type in menu
+					menu = { -- showing type in menu
 						nvim_lsp = "[LSP]",
 						path = "[Path]",
 						buffer = "[Buffer]",
 						luasnip = "[LuaSnip]",
 						copilot = "[Copilot]",
-					}),
+					},
 					before = cmp_formatter,
 					-- before = function(entry, vim_item) -- for tailwind css autocomplete
 					-- 	if vim_item.kind == 'Color' and entry.completion_item.documentation then
@@ -152,7 +152,7 @@ return {
 					-- 		vim_item.kind
 					-- 	return vim_item
 					-- end
-				})
+				}),
 			},
 		})
 
@@ -166,6 +166,7 @@ return {
 				},
 			},
 		})
-		lspconfig.ccls.setup({})
+		-- lspconfig.tailwindcss.setup({})
+		-- lspconfig.ccls.setup({})
 	end,
 }
