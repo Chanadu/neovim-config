@@ -6,8 +6,6 @@ return {
 		user_default_options = {
 			names = false,
 			tailwind = "both",
-			RRGGBBAA = true,
-			AARRGGBB = true,
 			rgb_fn = true,
 			hsl_fn = true,
 			css = true,
