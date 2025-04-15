@@ -49,7 +49,7 @@ return {
 
 		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+		keymap.set("n", "<leader>ew", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 		keymap.set(
 			"n",
 			"<leader>ef",
