@@ -28,16 +28,16 @@ return {
 		-- 	vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
 		-- end)
 		local hl_list = {}
-		for i, color in pairs({ "#E06C75", '#E5C07B', '#61AFEF', '#D19A66', '#98C379', '#C678DD', '#56B6C2' }) do
-			local name = 'IndentBlanklineIndent' .. i
+		for i, color in pairs({ "#E06C75", "#E5C07B", "#61AFEF", "#D19A66", "#98C379", "#C678DD", "#56B6C2" }) do
+			local name = "IndentBlanklineIndent" .. i
 			vim.api.nvim_set_hl(0, name, { fg = color })
-			table.insert(hl_list, name);
+			table.insert(hl_list, name)
 		end
-		require('indent_blankline').setup {
+		require("indent_blankline").setup({
 			-- extra stuff
 			char_highlight_list = hl_list,
 			-- extra stuff
-		} -- end)
+		}) -- end)
 
 		-- require('ibl').setup {
 		-- 	char_highlight_list = highlight,

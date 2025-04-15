@@ -1,8 +1,8 @@
 return {
-	'akinsho/toggleterm.nvim',
+	"akinsho/toggleterm.nvim",
 	version = "*",
 	keys = {
-		{ "<leader>/f", "<cmd>ToggleTerm direction=float<CR>",      desc = "Open Floating Terminal" },
+		{ "<leader>/f", "<cmd>ToggleTerm direction=float<CR>", desc = "Open Floating Terminal" },
 		{ "<leader>/h", "<cmd>ToggleTerm direction=horizontal<CR>", desc = "Open Horizontal Terminal" },
 	},
 	config = function()
@@ -15,7 +15,7 @@ return {
 			start_in_insert = true,
 			insert_mappings = true, -- whether or not the open mapping applies in insert mode
 			persist_size = true,
-			direction = 'horizontal',
+			direction = "horizontal",
 			close_on_exit = true, -- close the terminal window when the process exits
 			shell = vim.o.shell, -- change the default shell
 			-- This field is only relevant if direction is set to 'float'
@@ -24,23 +24,23 @@ return {
 				-- see :h nvim_win_open for details on borders however
 				-- the 'curved' border is a custom border type
 				-- not natively supported but implemented in this plugin.
-				border = 'single',
+				border = "single",
 				width = 200,
 				height = 50,
 				winblend = 3,
 				highlights = {
 					border = "Normal",
 					background = "Normal",
-				}
-			}
+				},
+			},
 		})
 
 		function _G.set_terminal_keymaps()
 			local opts = { buffer = 0 }
-			vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+			vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
 		end
 
 		-- if you only want these mappings for toggle term use term://*toggleterm#* instead
-		vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-	end
+		vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+	end,
 }

@@ -14,7 +14,6 @@ return {
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-path" },
 		{ "saadparwaiz1/cmp_luasnip" },
-		{ "roobert/tailwindcss-colorizer-cmp.nvim" },
 	},
 	config = function()
 		local lsp_zero = require("lsp-zero")
@@ -41,7 +40,7 @@ return {
 			float_border = "rounded",
 			capabilities = require("cmp_nvim_lsp").default_capabilities(),
 			servers = {
-				-- tailwindcss = {},
+				"tailwind",
 			},
 			inlay_hints = {
 				enabled = true,
@@ -68,7 +67,6 @@ return {
 		local s = luasnip.snippet
 		local t = luasnip.text_node
 		local i = luasnip.insert_node
-		-- luasnip.add_snippets("svelte", {
 		luasnip.add_snippets("all", {
 			s("scc", {
 				t({ '<script lang="ts">', "", "</script>" }),
@@ -79,12 +77,6 @@ return {
 		})
 
 		local lspkind = require("lspkind")
-
-		local cmp_formatter = function(entry, vim_item)
-			-- vim_item as processed by tailwindcss-colorizer-cmp
-			vim_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
-			return vim_item
-		end
 
 		cmp.setup({
 			sources = {
@@ -131,27 +123,6 @@ return {
 						luasnip = "[LuaSnip]",
 						copilot = "[Copilot]",
 					},
-					before = cmp_formatter,
-					-- before = function(entry, vim_item) -- for tailwind css autocomplete
-					-- 	if vim_item.kind == 'Color' and entry.completion_item.documentation then
-					-- 		local _, _, r, g, b = string.find(entry.completion_item.documentation,
-					-- 			'^rgb%((%d+), (%d+), (%d+)')
-					-- 		if r then
-					-- 			local color = string.format('%02x', r) ..
-					-- 				string.format('%02x', g) .. string.format('%02x', b)
-					-- 			local group = 'Tw_' .. color
-					-- 			if vim.fn.hlID(group) < 1 then
-					-- 				vim.api.nvim_set_hl(0, group, { fg = '#' .. color })
-					-- 			end
-					-- 			vim_item.kind = "■" -- or "⬤" or anything
-					-- 			vim_item.kind_hl_group = group
-					-- 			return vim_item
-					-- 		end
-					-- 	end
-					-- 	vim_item.kind = lspkind.symbolic(vim_item.kind) and lspkind.symbolic(vim_item.kind) or
-					-- 		vim_item.kind
-					-- 	return vim_item
-					-- end
 				}),
 			},
 		})
@@ -166,7 +137,5 @@ return {
 				},
 			},
 		})
-		-- lspconfig.tailwindcss.setup({})
-		-- lspconfig.ccls.setup({})
 	end,
 }
