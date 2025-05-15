@@ -79,7 +79,7 @@ return {
 		cmp.setup({
 			sources = {
 				{ name = "nvim_lsp" },
-				{ name = "copilot" },
+				-- { name = "copilot" },
 				{ name = "path" },
 				{ name = "luasnip", keyword_length = 2 },
 				{ name = "buffer", keyword_length = 3 },
@@ -119,7 +119,7 @@ return {
 						path = "[Path]",
 						buffer = "[Buffer]",
 						luasnip = "[LuaSnip]",
-						copilot = "[Copilot]",
+						-- copilot = "[Copilot]",
 					},
 				}),
 			},
