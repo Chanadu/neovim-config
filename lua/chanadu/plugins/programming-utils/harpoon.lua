@@ -35,7 +35,7 @@ return {
 
 		local keymap = vim.keymap
 
-		keymap.set("n", "<leader>a", function()
+		keymap.set("n", "<leader>A", function()
 			harpoon:list():add()
 			print("Added file to harpoon")
 		end, { desc = "Add file to harpoon" })
